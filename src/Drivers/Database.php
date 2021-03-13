@@ -32,6 +32,16 @@ class Database extends Translation implements DriverInterface
     }
 
     /**
+     * Get all languages with direction from the application.
+     *
+     * @return Collection
+     */
+    public function allLanguageswithDirections()
+    {
+        return Language::select('name', 'language', 'direction')->get();
+    }
+
+    /**
      * Get all group translations from the application.
      *
      * @return array
@@ -77,7 +87,7 @@ class Database extends Translation implements DriverInterface
      * @param string $language
      * @return void
      */
-    public function addLanguage($language, $name = null)
+    public function addLanguage($language, $name = null, $direction = 'ltr')
     {
         if ($this->languageExists($language)) {
             throw new LanguageExistsException(__('translation::errors.language_exists', ['language' => $language]));
@@ -86,6 +96,7 @@ class Database extends Translation implements DriverInterface
         Language::create([
             'language' => $language,
             'name' => $name,
+            'direction' => $direction
         ]);
     }
 
@@ -99,7 +110,7 @@ class Database extends Translation implements DriverInterface
      */
     public function addGroupTranslation($language, $group, $key, $value = '')
     {
-        if (! $this->languageExists($language)) {
+        if (!$this->languageExists($language)) {
             $this->addLanguage($language);
         }
 
@@ -126,7 +137,7 @@ class Database extends Translation implements DriverInterface
      */
     public function addSingleTranslation($language, $vendor, $key, $value = '')
     {
-        if (! $this->languageExists($language)) {
+        if (!$this->languageExists($language)) {
             $this->addLanguage($language);
         }
 

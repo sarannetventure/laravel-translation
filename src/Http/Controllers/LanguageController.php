@@ -18,19 +18,20 @@ class LanguageController extends Controller
 
     public function index(Request $request)
     {
-        $languages = $this->translation->allLanguages();
+        $languages = $this->translation->allLanguageswithDirections();
 
         return view('translation::languages.index', compact('languages'));
     }
 
     public function create()
     {
-        return view('translation::languages.create');
+        $directions  = ['ltr' => 'Left To Right', 'rtl' => 'Right To Left'];
+        return view('translation::languages.create', compact('directions'));
     }
 
     public function store(LanguageRequest $request)
     {
-        $this->translation->addLanguage($request->locale, $request->name);
+        $this->translation->addLanguage($request->locale, $request->name, $request->direction);
 
         return redirect()
             ->route('languages.index')

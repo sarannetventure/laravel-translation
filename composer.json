@@ -1,14 +1,12 @@
 {
-    "name": "joedixon/laravel-translation",
+    "name": "sarannetventure/laravel-translation",
     "description": "A tool for managing all of your Laravel translations",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Joe Dixon",
-            "email": "hello@joedixon.co.uk"
-        }
-    ],
+    "authors": [{
+        "name": "Saran Sivaprasad",
+        "email": "saran@netventure.in"
+    }],
     "require": {},
     "require-dev": {
         "orchestra/testbench": "^4.0",

@@ -27,6 +27,7 @@ class LanguageRequest extends FormRequest
         return [
             'name' => 'nullable|string',
             'locale' => ['required', new LanguageNotExists],
+            'direction' => 'required'
         ];
     }
 }
